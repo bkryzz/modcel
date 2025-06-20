@@ -12,7 +12,10 @@ Agent-based modeling of biological tissues
 
   The main module MODLOG treats a population of cells/agents that
   evolve in time and space according to a set of Markovian rules and 
-  internal chemical evolution of a prescribed set of metabolites.
+  internal chemical evolution of a prescribed set of metabolites. 
+  Chemical species can be assigned fixed, or transported and diffused by the fluids.
+  Cell-cell and cell-fluid xchanges are regulated by a basic model of advection-diffusion
+  equations.
   
   The following features decribe the cell/agent population:
 
