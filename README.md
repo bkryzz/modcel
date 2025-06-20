@@ -6,8 +6,8 @@ Agent-based modeling of biological tissues
   The main target application is to input 2D representations of
   biological tissues, as typically resulting from a histological
   section or a biopsy. The user can either input a tissue map
-  from a real sample (e.g., reconstructed via CellProfiler), or
-  build their own tissue model, to imitate or create an entirely
+  from a real sample (e.g., reconstructed via <a href="https://github.com/CellProfiler">CellProfiler</a>), or
+  build their own tissue model, to imitate a realistic pattern or create an entirely
   arbitrary condition.
 
   The main module MODLOG treats a population of cells/agents that
@@ -29,13 +29,13 @@ MODCEL is written with a mix of Python for the user-interaction parts
 managing 2D maps and xy-plots of interesting quantities...), and
 Fortran90 for the computationally-intensive parts.
 
------ VERSION 2.4 was 2D/3D WITH SQ/CUB or VORONOI space
------ VERSION 2.4 included some OpenMP parallelization
+----- VERSION 2.4 was 2D/3D WITH SQ/CUB or VORONOI space. It included an attempt 
+at OpenMP parallelization.
 
------ VERSION 2.4.1 included the FEM2D Navier-Stokes solver by
+----- VERSION 2.4.1 included the <a href="https://github.com/julesghub/FEM2D">FEM2D Navier-Stokes solver</a> by
       J. Burkard to describe fluid flow in capillaries and ducts.
 
------ VERSION 2.4.2 included OpenCOR chemical models compatibility
+----- VERSION 2.4.2 included <a href="https://github.com/opencor/opencor">OpenCOR</a> chemical models compatibility
 
 ----- Starting with version >2.5 the model is more general:
 
