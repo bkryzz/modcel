@@ -205,5 +205,11 @@ gnuplot_scripts contains scripts to accelerate the production
 LIST        contains a (not updated, sorry) list of the code
             variables and array names
 
+---------------------------------------------------------------------------
 
+The version 1.0 of MODLOG was at the origin of this work:
+M. Tomezak, C. Abbadie, E. Lartigau, F. Cleri, <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022519315005160">A biophysical model of cell evolution after cytotoxic treatments: Damage, repair and cell response</a>, J. Theor. Biol. <bf>389</bf>, 149-158 (2016)
+
+The version 2.0 of MODLOG was used in this work:
+F. Cleri, <a href="https://link.springer.com/article/10.1140/epje/i2019-11878-7">Agent-based model of multicellular tumor spheroid evolution including cell metabolism</a>, Eur. J. Phys. E: Soft Matter Biol. Phys. <bf>42</bf>, 112 (2019)
  
