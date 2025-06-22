@@ -166,7 +166,7 @@ the solid and fluid regions (e.g., including macrophages, stellate cells...)
 
 ----- In V2.0 the 2D/3D model introduced Voronoi tessellation
 
------ In V2.4 the 2D/3D model restored also square/cube
+----- In V2.4 the 2D/3D model restored also square/cube symmetry
 
   Chemistry: reaction-diffusion equations describing the 
   flux of chemicals can be coupled to the spatial matrix 
