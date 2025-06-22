@@ -130,7 +130,9 @@ is generated).
    and creates the python module "triang.py", which will
    propose different 2D triangulations.
 
-5) Ensuite, the complete simulation can start
+   <b>You will notice that</b> in the console window, messages and comments coming from the Fortran code appear in 'UPPERCASE', while messages and comments from the Python modules appear in 'lowercase'.
+
+6) Ensuite, the complete simulation can start
 
 Different types of cells are included in 2.5 version. 
 E.g. for the liver model with nr_cel=2 and fl_cel=3 they could be:
