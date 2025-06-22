@@ -19,12 +19,12 @@ Agent-based modeling of biological tissues
   
   The following features decribe the cell/agent population:
 
-  - Discrete: models an assembly of individual cells/agents living on a predefined lattice
+  - <b>Discrete:</b> models an assembly of individual cells/agents living on a predefined lattice
 
-  - Continuous: models Navier-Stokes fluid flow in blood and other 
+  - <b>Continuous:</b> models Navier-Stokes fluid flow in blood and other 
   fluid capillaries (e.g., bile, lymph...) 
 
-  - Multistate: each cell/agent evolves by probabilistic Markov chain through discrete states,
+  - <b>Multistate:</b> each cell/agent evolves by probabilistic Markov chain through discrete states,
   e.g., from “healthy” to "diseased" to “dead”.
 
 MODCEL is written with a mix of Python for the user-interaction parts
