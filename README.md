@@ -130,7 +130,7 @@ is generated).
    and creates the python module "triang.py", which will
    propose different 2D triangulations.
 
-   <b>You will notice that</b> in the console window, messages and comments coming from the Fortran code appear in 'UPPERCASE', while messages and comments from the Python modules appear in 'lowercase'.
+   <i>You will notice that in the console window, messages and comments coming from the Fortran code appear in</i> UPPERCASE, <i>while messages and comments from the Python modules appear in</i> lowercase.
 
 6) Ensuite, the complete simulation can start
 
