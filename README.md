@@ -19,7 +19,7 @@ Agent-based modeling of biological tissues
   
   The following features decribe the cell/agent population:
 
-  - Discrete: models an assembly of individual cells/agents
+  - Discrete: models an assembly of individual cells/agents living on a predefined lattice
 
   - Continuous: models Navier-Stokes fluid flow in blood and other 
   fluid capillaries (e.g., bile, lymph...) 
