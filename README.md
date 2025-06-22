@@ -38,11 +38,11 @@ at OpenMP parallelization.
 ----- VERSION 2.4 included the <a href="https://github.com/julesghub/FEM2D">FEM2D Navier-Stokes solver</a> by
       J. Burkard to describe fluid flow in capillaries and ducts.
 
------ VERSION 2.4.2 included <a href="https://github.com/opencor/opencor">OpenCOR</a> chemical models compatibility
+----- VERSION 2.4.2 opened to compatibility with <a href="https://github.com/opencor/opencor">OpenCOR</a> chemical models according to CellML standards.
 
------ Starting with version >2.5 the model has turned more general:
+----- Starting with version >2.5 the model has turned yet more general:
 
-  1) Select an arbitrary number of cell types
+  1) You can select an arbitrary number of cell types:
      - the first nr_cel (ITYPE=1,2,3...) are solid cells (epithelial,
        hepato, adipo, etc,)
      - the next fl_cel (ITYPE=nr_cel+1, +2 ...) are fluid cells: can be
@@ -59,12 +59,13 @@ at OpenMP parallelization.
      - Usually, fl_cel=1 is venous blood, fl_cel=2 is arterial,
        fl_cel=3 can be bile or lymph, and so on...
        
-HOWEVER: such cell definitions are just a mnemonic, not necessarily attached to a fixed real cell type. How a cell-agent actually behaves is fixed by the chemistry, see 2) below.
+HOWEVER: such cell definitions are just a mnemonic, not necessarily attached to a fixed real cell type. How a cell-agent actually behaves is fixed by the chemistry, see 2) below. 
 
-  2) Select an arbitrary number of metabolites, with the FIXED
-     convention that: 
-     1=Insulin, 2=glucose, 3=oxygen, 4=FFA (free fatty acids)
-     Indices 5,6,7... can be used for any other metabolite.
+IN PRACTICE: even if you can use a potentially illimited number of variants, try to use not more than 2-3 different cell types, and 1 or 2 fluids, otherwise the model could become very difficult to analyse and interpret. Make the chemistry as rich as possible, instead.
+
+  2) You can select an arbitrary number of metabolites, with the FIXED convention that: 
+     1=Insulin, 2=glucose, 3=oxygen, 4=FFA (free fatty acids).
+     Then, the indices 5,6,7... can be used for any other metabolite.
      - Chemical equations for metabolite cycling (the 4 basic
        and any other) are coded in CellML language. The easiest
        way to provide them is to use OpenCOR to script the eqs
@@ -76,6 +77,9 @@ HOWEVER: such cell definitions are just a mnemonic, not necessarily attached to 
        blood cells you must decide how nutrients, oxygen etc.
        are delivered, and/or how fluids (bile, lymph,...) are
        recovered from the solid cells and transported.
+
+  3) Boolean logic rules determine how cells evolve, according to the summary of their chemical activity during time (a typical time step used in MODCEL simulations is 1 minute, although this can be adjusted). That is, how cells can go around their phases (G1, S, G2, M), enter the G0, move, duplicate, trans-differentiate, or differentiate (if they are stems), go into apoptose or necrose, and more.
+
 
 ------------------------------------------------------------------
 <b>To run the main program MODLOG requires a F90 compiler (GNU is ok) 
