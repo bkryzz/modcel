@@ -1,0 +1,54 @@
+LISTE DES VARIABLES DU CODE (toutes routines confondues)
+NOP= element non encore operationnel (en developpement)
+P= parametre attribue en compilation
+I= donne en input par fichier
+      
+      nst         nombre max de SSB par cellule (P)
+      ndt         nombre max de DSB par cellule (P)
+      ntime       nombre max de pas de simulation  (P)
+      nsize       taille du tapis cellulaire (P)
+      ncmax       aire du tapis (en nombre de sites);set always ncmax=(nsize)^2 with nsize=I+1 (P)
+      ncel        nombre initial de cellules (< ncmax)  (I)
+      numc        nombre de cellules a l'instant t (< ncmax)
+      ntime_ir    temps dedie a l'irradiation  (I)
+      ntime_cy    temps apres l'irradiation  (I)
+      itconv      facteur de conversion entre les deux temps  (I)
+      index       indice du proche voisin (de 1 a 4 sur ce type de reseau)       
+      indupl      nombre de cellules qui ont double
+      itime       indice du temps d'irradiation (1<...<ntime_ir)
+      jtime       indice du temps apres irradiation (1<...<ntime_cy)
+      dose        facteur de conversion pour estim dose   (I)
+      ssb         probabilite de creation du ssb (=pour toute cell)  (I)
+      dsb             "        "     "     " dsb (  "     "    "  )  (I)
+      rssb            "        " reparation du ssb ("     "    "  )  (I)
+      rdsb            "        "     "      "  dsb ("     "    "  )  (I)
+      duprb           "        " duplication      ( "     "    "  )  (I)
+      dupl_time   variable de test pour le temps de duplication
+      cc          nombre aleatoire
+      prob        variable d'appui pour calcul probabilite 
+      dffc        constante de diffusion du traceur 1 (futur: vecteur)  (I)
+      dens(1:ncmax) concentration totale du traceur 1 dans chaque cellule
+      idens(1:ncmax) nombre entier correspondant a dens(:) pour cartographie
+      dens_t(1:ncmax)  conc. instantanee du traceur 1 dans chaque cellule
+      dens_s(1:ncmax)    "         "      "    "    1 dans la source
+      strl(0:nst) nombres de stirling
+      binom(0:nst,0:nst) matrice de coefficient binomial 
+      issb(1:ncmax)  nombre de ssb dans chaque cellule
+      idsb(1:ncmax)  nombre de dsb  "     "       "
+      iene(1:ncmax)  energie de migration pour auto diffusion (NOP)
+      emat(0:3,0:3) ) matrice d'interactions entre paires de cellules (NOP)
+      ipsx(1:ncmax)  indice de localisation en x de chaque cellule
+      ipsy(1:ncmax)    "            "       "  y  "    "      "
+      ipsz(1:ncmax)    "            "       "  z  "    "      " (NOP)
+      idupl(1:ncmax) temps depuis la derniere duplication pour chaque cell 
+      ityp(1:ncmax)  type de cellule (=1 normale =2 souche =3 tumorale)
+      iloc(1:ncmax)  indice du site du reseau occupe par chaque cellule
+      iocc(1:ncmax)  indice du nombre de cellule qui occupe un site du reseau
+      iphse(1:ncmax) indice de la phase cellulaire (1-4 + 0) pour chaque cell
+      innb(1:ncmax,1:6) tableau des sites proches voisins de chaque site (+/-x,+/-y,+/-z)
+      ps(0:nst,0:nst) matrice de Markov pour passage entre etats avec +1 SSB
+      pd(0:ndt,0:ndt)     "    "    "     "     "      "     "    "   +1 DSB 
+      rps(0:nst,0:nst)    "    "    "     "     "      "     "    "   -1 SSB
+      rpd(0:ndt,0:ndt)    "    "    "     "     "      "     "    "   -1 DSB
+
+      kc,kt,kj,lc,ikt,jkt,izt,jzt,iss,isl0,idl0    variables temporaires
