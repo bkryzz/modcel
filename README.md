@@ -67,10 +67,10 @@ at OpenMP parallelization.
      1=Insulin, 2=glucose, 3=oxygen, 4=FFA (free fatty acids).
      Then, the indices 5,6,7... can be used for any other metabolite.
      - Chemical equations for metabolite cycling (the 4 basic
-       and any other) are coded in CellML language. The easiest
+       + any other) can be coded in CellML language. The easiest
        way to provide them is to use OpenCOR to script the eqs
        and then export them to Fortran; they will be linked by
-       MODLOG and used normally.
+       MODLOG and used normally. (Alternatively, you can code them yourself in the corresponding subroutine.)
      - Be sure to create a 'compartment' for each of the nr_cel
        and fl_cel cell types. For solid cells, you should define
        how metabolites are consumed, created and exchanged. For
@@ -78,7 +78,7 @@ at OpenMP parallelization.
        are delivered, and/or how fluids (bile, lymph,...) are
        recovered from the solid cells and transported.
 
-  3) Boolean logic rules determine how cells evolve, according to the summary of their chemical activity during time (a typical time step used in MODCEL simulations is 1 minute, although this can be adjusted). That is, how cells can go around their phases (G1, S, G2, M), enter the G0, move, duplicate, trans-differentiate, or differentiate (if they are stems), go into apoptose or necrose, and more.
+  3) Boolean logic rules determine how cells evolve, according to the summary of their chemical activity during time (a typical time step used in MODCEL simulations is 1 minute, adjustable with the parameter ITCONV). That is, how cells can go around their phases (G1, S, G2, M), enter the G0, move, duplicate, trans-differentiate, or differentiate (if they are stems), go into apoptose or necrose, and more. 
 
 
 ------------------------------------------------------------------
