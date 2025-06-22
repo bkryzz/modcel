@@ -47,11 +47,11 @@ at OpenMP parallelization.
        hepato, adipo, etc,)
      - the next fl_cel (ITYPE=nr_cel+1, +2 ...) are fluid cells: can be
        used to define the capillary flows (blood, bile, lymph etc)
-       Note that fl_cel can be =0, but nr_cel ≥ 1.
+       Note that fl_cel can be =0, but nr_cel should be ≥1 (see below).
      - NUMF=SUM_nr_cel+SUM_fl_cel
      - NCEL=NUMF(total solid/fluid agents) + NDIS (boundary agents)
      - After building the first Voronoi map, all cells are set to
-       parenchyma ITYPE=1 (whatever you chose it to represent...)
+       parenchyma ITYPE=1 (whatever you chose it to represent...). If both nr_cel and fl_cel are =0, an empty Voronoi lattice is generated, to be filled by hand by putting down agents one by one.
      - Note that fluid cells are selected after the Voronoi map
        of the whole tissue has been constructed. This can be done
        by hand-picking with the mouse, or by asking the code to
