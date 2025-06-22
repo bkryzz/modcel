@@ -59,9 +59,9 @@ at OpenMP parallelization.
      - Usually, fl_cel=1 is venous blood, fl_cel=2 is arterial,
        fl_cel=3 can be bile or lymph, and so on...
        
-HOWEVER: such cell definitions are just a mnemonic, not necessarily attached to a fixed real cell type. How a cell-agent actually behaves is fixed by the chemistry, see 2) below. 
+<b>HOWEVER:</b> such cell definitions are just a mnemonic, not necessarily attached to a fixed real cell type. How a cell-agent actually behaves is fixed by the chemistry, see 2) below. 
 
-IN PRACTICE: even if you can use a potentially illimited number of variants, try to use not more than 2-3 different cell types, and 1 or 2 fluids, otherwise the model could become very difficult to analyse and interpret. Make the chemistry as rich as possible, instead.
+<b>IN PRACTICE:</b> even if you can use a potentially illimited number of variants, try to use not more than 2-3 different cell types, and 1 or 2 fluids, otherwise the model could become very difficult to analyse and interpret. Make the chemistry as rich as possible, instead.
 
   2) You can select an arbitrary number of metabolites, with the FIXED convention that: 
      1=Insulin, 2=glucose, 3=oxygen, 4=FFA (free fatty acids).
