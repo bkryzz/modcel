@@ -1,7 +1,8 @@
       character*80 car
       dimension x(100000),y(100000),z(100000)
       open(unit=10,file='fort.21',status='old')
-      ii=296575
+c     ii=296575
+      ii=2038
       do it=1,15
 
       read (10,*) num

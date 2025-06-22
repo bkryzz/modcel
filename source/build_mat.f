@@ -8,19 +8,15 @@
       implicit real*8(a-h,o-z)
       dimension ps(0:nst,0:nst),binom(0:nst,0:nst)
       do i=0,nst
-!     do j=i,nst
-      do j=nst,i,-1
-      add=0.d0
-      if (j.lt.nst) add=ps(i,j+1)
-      ps(i,j)=binom(nst-i,j-i)*(ssb**(j-i))*((1.d0-ssb)**(nst-j))+add
+      do j=i,nst
+      ps(i,j)=binom(nst-i,j-i)*(ssb**(j-i))*((1.d0-ssb)**(nst-j))
       end do
       end do
 !     write (6,*) 'ps(i,j) - SSB producing probability'
-!     do i=0,nst
+      do i=0,nst
 !     write (6,100) (ps(i,j),j=0,nst)
-!     end do
  100  format(20f10.5)
-      return
+      end do
 !- check unitary norm. probability
       do i=0,nst
       sum=0.d0
@@ -45,10 +41,10 @@
       end do
       end do
 !     write (6,*) 'pd(i,j) - DSB producing probability'
-!     do i=0,ndt
+      do i=0,ndt
 !     write (6,100) (pd(i,j),j=0,ndt)
-!     end do
  100  format(20f10.5)
+      end do
 !- check unitary norm. probability
       do i=0,ndt
       sum=0.d0
@@ -77,10 +73,10 @@
       end do
       rps(nst,nst)=1.d0
 !     write (6,*) 'rps(i,j) - SSB repair probability'
-!     do i=0,nst
+      do i=0,nst
 !     write (6,100) (rps(i,j),j=0,nst)
-!     end do
  100  format(20f10.5)
+      end do
 !- check unitary norm. probability
       do i=0,nst
       sum=rps(i,i)
@@ -106,10 +102,10 @@
       end do
       rpd(ndt,ndt)=1.d0
 !     write (6,*) 'rpd(i,j) - DSB repair probability'
-!     do i=0,ndt
+      do i=0,ndt
 !     write (6,100) (rpd(i,j),j=0,ndt)
-!     end do
  100  format(20f10.5)
+      end do
 !- check unitary norm. probability
       do i=0,ndt
       sum=rpd(i,i)

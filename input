@@ -1,0 +1,23 @@
+
+   500       2.   
+   120       1440      60
+   0.015     0.003     0.0027   6.e-4  4.e+1   1.e-3
+   5
+
+   NCEL      DOSE
+   NTIME_IR  NTIME_CY  ITCONV
+   SSB       DSB       RSSB     RDSB   DUPRB   DFFC
+   NCRIT
+
+ncel = initial # of cells
+dose = dose (Gy)
+ntime_ir = irr. time (seconds)
+ntime_cy = cell time (minutes)
+itconv = conv. sec to min
+ssb = ssb prob (= 1000/Gy)
+dsb = dsb prob
+rssb = ssb repair prob. 
+rdsb = dsb repair prob.
+duprb = cell duplication probability (30-50 is OK, 10**9 means prob=0)
+dffc = diffusion coefficient for tracer
+
