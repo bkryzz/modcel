@@ -32,10 +32,10 @@ MODCEL is written with a mix of Python for the user-interaction parts
 managing 2D maps and xy-plots of interesting quantities, etc...), and
 Fortran90 for the computationally-intensive parts.
 
------ VERSION 2.4 was 2D/3D WITH SQ/CUB or VORONOI space. It included an attempt 
+----- VERSION 2.0 was 2D/3D WITH SQ/CUB or VORONOI space. It included an attempt 
 at OpenMP parallelization.
 
------ VERSION 2.4.1 included the <a href="https://github.com/julesghub/FEM2D">FEM2D Navier-Stokes solver</a> by
+----- VERSION 2.4 included the <a href="https://github.com/julesghub/FEM2D">FEM2D Navier-Stokes solver</a> by
       J. Burkard to describe fluid flow in capillaries and ducts.
 
 ----- VERSION 2.4.2 included <a href="https://github.com/opencor/opencor">OpenCOR</a> chemical models compatibility
