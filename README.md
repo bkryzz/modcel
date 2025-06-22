@@ -1,7 +1,7 @@
 # modcel
 Agent-based modeling of biological tissues
 
-  MODCEL v2.5 is an AGENT-BASED biophysical simulation model aimed at reconstructing tissue physiology starting from a 2D image (although for backward compatibility with older versions, it also includes older modules for 3D simulation of e.g. spheroids or organoids.)
+<b>MODCEL v2.5 is an AGENT-BASED biophysical simulation model</b> aimed at reconstructing tissue physiology starting from a 2D image (for backward compatibility with versions ≤2.0, it also includes older modules for 3D simulation of e.g. spheroids or organoids.)
 
   The main target application is to input 2D representations of
   biological tissues, as typically resulting from a histological
@@ -24,12 +24,12 @@ Agent-based modeling of biological tissues
   - Continuous: models Navier-Stokes fluid flow in blood and other 
   fluid capillaries (e.g., bile, lymph...) 
 
-  - Multistate: each cell/agent evolves through discrete states,
+  - Multistate: each cell/agent evolves by Boolean conditions through discrete states,
   e.g., from “healthy” to "diseased" to “dead”.
 
 MODCEL is written with a mix of Python for the user-interaction parts
 (creating and managing input files and cell configs, creating and
-managing 2D maps and xy-plots of interesting quantities...), and
+managing 2D maps and xy-plots of interesting quantities, etc...), and
 Fortran90 for the computationally-intensive parts.
 
 ----- VERSION 2.4 was 2D/3D WITH SQ/CUB or VORONOI space. It included an attempt 
@@ -40,24 +40,26 @@ at OpenMP parallelization.
 
 ----- VERSION 2.4.2 included <a href="https://github.com/opencor/opencor">OpenCOR</a> chemical models compatibility
 
------ Starting with version >2.5 the model is more general:
+----- Starting with version >2.5 the model has turned more general:
 
   1) Select an arbitrary number of cell types
      - the first nr_cel (ITYPE=1,2,3...) are solid cells (epithelial,
        hepato, adipo, etc,)
-     - the next fl_cel (ITYPE=nr_cel+1, +2 ...) are fluid cells: are
+     - the next fl_cel (ITYPE=nr_cel+1, +2 ...) are fluid cells: can be
        used to define the capillary flows (blood, bile, lymph etc)
-       Note that fl_cel can be =0, but nr_cel>= 1.
+       Note that fl_cel can be =0, but nr_cel ≥ 1.
      - NUMF=SUM_nr_cel+SUM_fl_cel
      - NCEL=NUMF(total solid/fluid agents) + NDIS (boundary agents)
      - After building the first Voronoi map, all cells are set to
-       ITYPE=1 (whatever you chose it to represent...)
+       parenchyma ITYPE=1 (whatever you chose it to represent...)
      - Note that fluid cells are selected after the Voronoi map
        of the whole tissue has been constructed. This can be done
        by hand-picking with the mouse, or by asking the code to
        provide a random guess of vases distribution.
      - Usually, fl_cel=1 is venous blood, fl_cel=2 is arterial,
        fl_cel=3 can be bile or lymph, and so on...
+       
+HOWEVER: such cell definitions are just a mnemonic, not necessarily attached to a fixed real cell type. How a cell-agent actually behaves is fixed by the chemistry, see 2) below.
 
   2) Select an arbitrary number of metabolites, with the FIXED
      convention that: 
@@ -76,14 +78,14 @@ at OpenMP parallelization.
        recovered from the solid cells and transported.
 
 ------------------------------------------------------------------
-To run the main program MODLOG requires a F90 compiler (GNU is ok) 
-and a standard Python installation (v.3.7 or higher recommended).
+<b>To run the main program MODLOG requires a F90 compiler (GNU is ok) 
+and a standard Python installation (v.3.7 or higher recommended).</b>
 
-The library GUIzero must be installed. On Windows/Mac just type:
-pip3 install guizero
+<b>The library GUIzero must be installed. On Windows/Mac just type:</b>
+<i>pip3 install guizero</i>
 
-On Linux you may need to install tkinter first, e.g.:
-sudo apt install python3-tk
+<b>On Linux you may need to install tkinter first, e.g.:</b>
+<i>sudo apt install python3-tk</i>
 
 ***
 
@@ -132,9 +134,9 @@ E.g. for the liver model with nr_cel=2 and fl_cel=3 they could be:
    ITYP=2 diseased hepatocyte (fibrotic etc)
    ITYP=3 venous capillary
    ITYP=4 arterial capillary
-   ITYP=5 bile duct
+   ITYP=5 bile duct,
 plus the special "boundary agents" defining the interface between
-the solid and fluid regions.
+the solid and fluid regions (e.g., including macrophages, stellate cells...)
 
 -------------------------------------------------------
   Damage: each cell has a number of tags describing the 
