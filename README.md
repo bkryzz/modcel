@@ -148,6 +148,7 @@ the solid and fluid regions (e.g., including macrophages, stellate cells...)
   Damage: each cell has a number of tags describing the 
   accumulation of individual defects (e.g., SSB, DSB, 
   base-excision, base-polymerization etc.)
+  
 ----- In V1.0 only SSB and DSB damages to DNA were implemented
 
   Repair: each cell has an individual probability for 
@@ -160,14 +161,20 @@ the solid and fluid regions (e.g., including macrophages, stellate cells...)
   Geometry & topology: each cell in the model occupies a
   site of a regular lattice and “knows” its connectivity 
   to neighbor cells, allowing distributed effects
------ In V1.0 only 2D was implemented with diamond sym
+  
+----- In V1.0 only 2D was implemented with diamond symmetry
+
 ----- In V2.0 the 2D/3D model introduced Voronoi tessellation
+
 ----- In V2.4 the 2D/3D model restored also square/cube
 
   Chemistry: reaction-diffusion equations describing the 
   flux of chemicals can be coupled to the spatial matrix 
+  
 ----- In V1.0 only one tracer 2D field wass implemented
+
 ----- In V2.0 glucose/oxygen/activ/necro implemented
+
 ----- In V2.4 the interface to CellML was initiated
 
 ***
