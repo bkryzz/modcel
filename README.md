@@ -1,5 +1,6 @@
-# modcel
-Agent-based modeling of biological tissues
+# modcel <img width="200" src="https://github.com/user-attachments/assets/e5b5c036-f6b0-4878-973e-5b0878055985" />
+
+Agent-based modeling of biological tissues 
 
 <b>MODCEL v2.5 is an AGENT-BASED biophysical simulation model</b> aimed at mathematically reconstructing and modeling tissue physiology starting from a 2D image (for backward compatibility with versions ≤2.0, it also includes older modules for 3D simulation of e.g. spheroids or organoids, with central symmetry.)
 
