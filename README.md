@@ -1,4 +1,4 @@
-# modcel <img width="200" src="https://github.com/user-attachments/assets/e5b5c036-f6b0-4878-973e-5b0878055985" />
+# modcel <img width="200" src="https://github.com/user-attachments/assets/54fb86e4-f129-4bd0-8092-902baa056f78" />
 
 Agent-based modeling of biological tissues 
 
