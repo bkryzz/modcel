@@ -11,7 +11,7 @@ Agent-based modeling of biological tissues (from the Latin <i><b>MOD</b>ulamen <
   build their own tissue model, to imitate a realistic pattern or create an entirely
   arbitrary condition.
 
-  The main module MODLOG treats a population of cells/agents that
+  The main module MODLOG (its number-crunching F90 engine) treats a population of cells/agents that
   evolve in time and space according to a set of Markovian rules and 
   internal chemical evolution of a prescribed set of metabolites. 
   Chemical species can be assigned fixed, or transported and diffused by the fluids.
