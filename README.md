@@ -7,7 +7,7 @@ Agent-based modeling of biological tissues
   The main target application is to input 2D representations of
   biological tissues, as typically resulting from a histological
   section or a clinical biopsy. The user can either input a tissue map
-  from a real sample (e.g., reconstructed via <a href="https://github.com/CellProfiler">CellProfiler</a>), or
+  from a real sample (e.g., reconstructed via segmentation tools like <a href="https://github.com/MouseLand/cellpose">CellPose</a> or <a href="https://github.com/CellProfiler">CellProfiler</a>), or
   build their own tissue model, to imitate a realistic pattern or create an entirely
   arbitrary condition.
 
