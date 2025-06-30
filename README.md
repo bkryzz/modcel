@@ -2,12 +2,12 @@
 
 Agent-based modeling of biological tissues (from the Latin <i><b>MOD</b>ulamen <b>CEL</b>lularum</i>, or "the rhythm of cells").
 
-<b>MODCEL v2.5 is an AGENT-BASED biophysical simulation model</b> aimed at mathematically reconstructing and modeling tissue physiology starting from a 2D image (for backward compatibility with versions ≤2.0, it also includes older modules for 3D simulation of e.g. spheroids or organoids, with central symmetry.)
+<b>MODCEL v2.5 is an AGENT-BASED biophysical simulation model</b> aimed at mathematically reconstructing and modeling tissue physiology, possibly starting from 2D images (for backward compatibility with versions ≤2.0, it also includes older modules for 3D simulation of e.g. spheroids or organoids with central symmetry.)
 
   The main target application is to input 2D representations of
   biological tissues, as typically resulting from a histological
   section or a clinical biopsy. The user can either input a tissue map
-  from a real sample (e.g., reconstructed via segmentation tools like <a href="https://github.com/MouseLand/cellpose">CellPose</a> or <a href="https://github.com/CellProfiler">CellProfiler</a>), or
+  from a real sample (e.g., slides reconstructed via segmentation tools like <a href="https://github.com/MouseLand/cellpose">CellPose</a> or <a href="https://github.com/CellProfiler">CellProfiler</a>), or
   build their own tissue model, to imitate a realistic pattern or create an entirely
   arbitrary condition.
 
