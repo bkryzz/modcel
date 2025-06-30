@@ -37,9 +37,9 @@ Fortran90 for the computationally-intensive parts.
 at OpenMP parallelization.
 
 ----- VERSION 2.4 included the <a href="https://github.com/julesghub/FEM2D">FEM2D Navier-Stokes solver</a> by
-      J. Burkard to describe fluid flow in capillaries and ducts.
+      J. Burkard to describe fluid flow in capillaries and ducts. In the most recent version this part has been now superseded by the multigrid class and the related solvers.
 
------ VERSION 2.4.2 opened to compatibility with <a href="https://github.com/opencor/opencor">OpenCOR</a> chemical models according to CellML standards.
+----- VERSION 2.4.2 opened to compatibility with <a href="https://github.com/opencor/opencor">OpenCOR</a> chemical models according to CellML scripting. We plan to include a more general parser to read more different format (e.g. from COPASI).
 
 ----- Starting with version >2.5 the model has turned yet more general:
 
@@ -67,13 +67,12 @@ at OpenMP parallelization.
   2) You can select an arbitrary number of metabolites, with the FIXED convention that: 
      1=Insulin, 2=glucose, 3=oxygen, 4=FFA (free fatty acids).
      Then, the indices 5,6,7... can be used for any other metabolite.
-     - Chemical equations for metabolite cycling (the 4 basic
-       + any other) can be coded in CellML language. The easiest
+     - Chemical equations for metabolite cycling (the 4 basic plus any other) can be coded in CellML language. The easiest
        way to provide them is to use OpenCOR to script the eqs
        and then export them to Fortran; they will be linked by
        MODLOG and used normally. (Alternatively, you can code them yourself in the corresponding subroutine.)
      - Be sure to create a 'compartment' for each of the nr_cel
-       and fl_cel cell types. For solid cells, you should define
+       and fl_cel cell types, and include at least one chemical equation per compartment. For solid cells, you should define
        how metabolites are consumed, created and exchanged. For
        blood cells you must decide how nutrients, oxygen etc.
        are delivered, and/or how fluids (bile, lymph,...) are
