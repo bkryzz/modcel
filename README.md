@@ -37,9 +37,9 @@ Fortran90 for the computationally-intensive parts.
 at OpenMP parallelization.
 
 ----- VERSION 2.4 included the <a href="https://github.com/julesghub/FEM2D">FEM2D Navier-Stokes solver</a> by
-      J. Burkard to describe fluid flow in capillaries and ducts. In the most recent version this part has been now superseded by the multigrid class and the related solvers.
+      J. Burkard to describe fluid flow in capillaries and ducts. In the most recent version this part has been now superseded by the <i>multigrid</i> structure and the related OpenMP-based solvers.
 
------ VERSION 2.4.2 opened to compatibility with <a href="https://github.com/opencor/opencor">OpenCOR</a> chemical models according to CellML scripting. We plan to include a more general parser to read more different format (e.g. from COPASI).
+----- VERSION 2.4.2 opened to compatibility with <a href="https://github.com/opencor/opencor">OpenCOR</a> chemical models according to CellML scripting. We plan to include a more general parser to read more various formats (e.g. from COPASI).
 
 ----- Starting with version >2.5 the model has turned yet more general:
 
