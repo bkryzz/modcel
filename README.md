@@ -1,4 +1,6 @@
-# modcel <img width="200" src="https://github.com/user-attachments/assets/54fb86e4-f129-4bd0-8092-902baa056f78" />
+<img width="130" src=https://github.com/user-attachments/assets/1e76c787-8494-41d4-93ee-a799ae8675c1 /> 
+<!img width="200" src="https://github.com/user-attachments/assets/54fb86e4-f129-4bd0-8092-902baa056f78" />
+
 
 Agent-based modeling of biological tissues (from the Latin <i><b>MOD</b>ulamen <b>CEL</b>lularum</i>, or "the rhythm of cells").
 
