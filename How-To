@@ -1,4 +1,4 @@
-INSTALLATION AND FIRST-RUN NOTES FOR v.2.5d (beta-not-for-development)
+<b>INSTALLATION AND FIRST-RUN NOTES FOR v.2.5d</b> (beta/not-for-development)
 
 <b> 1) You can select an arbitrary number of cell types:</b>
      - A "input_cell" file defines the number of different cells and their phenotypes. The file can be created during the normal GUI-directed input for each simulation, or written/modified by hand before launching the main simulation.
