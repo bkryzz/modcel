@@ -13,6 +13,8 @@ Agent-based modeling of biological tissues (from the Latin <i><b>MOD</b>ulamen <
   build their own tissue model, to imitate a realistic pattern or create an entirely
   arbitrary condition.
 
+  The geometry and physics allows a 3D representation, however taking advantage (with respect to other softwares) of a <b>layered</b> tissue structure, that better approaches the architecture of most living tissues. 
+  
   The main module MODLOG (its number-crunching F90 engine) treats a population of cells/agents that
   evolve in time and space according to a set of Markovian rules and 
   internal chemical evolution of a prescribed set of metabolites. 
