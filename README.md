@@ -6,7 +6,7 @@ Agent-based modeling of biological tissues (from the Latin <i><b>MOD</b>ulamen <
 
 <b>MODCEL v2.5 is an AGENT-BASED biophysical simulation model</b> aimed at mathematically reconstructing and modeling tissue physiology, possibly starting from 2D images (for backward compatibility with versions ≤2.0, it also includes older modules for 3D simulation of e.g. spheroids or organoids with central symmetry.)
 
-  The main target application is to input 2D representations of
+  The key intended target application is to input 2D representations of
   biological tissues, as typically resulting from a histological
   section or a clinical biopsy. The user can either input a tissue map
   from a real sample (e.g., slides reconstructed via segmentation tools like <a href="https://github.com/MouseLand/cellpose">CellPose</a> or <a href="https://github.com/CellProfiler">CellProfiler</a>), or
@@ -45,34 +45,29 @@ at OpenMP parallelization.
 
 ----- Starting with version >2.5 the model has turned yet more general:
 
-  1) You can select an arbitrary number of cell types:
-     - the first nr_cel (ITYPE=1,2,3...) are solid cells (epithelial,
-       hepato, adipo, etc,)
-     - the next fl_cel (ITYPE=nr_cel+1, +2 ...) are fluid cells: can be
-       used to define the capillary flows (blood, bile, lymph etc)
-       Note that fl_cel can be =0, but nr_cel should be ≥1 (see below).
-     - NUMF=SUM_nr_cel+SUM_fl_cel
-     - NCEL=NUMF(total solid/fluid agents) + NDIS (boundary agents)
+ <b> 1) You can select an arbitrary number of cell types:</b>
+     - A "input_cell" file defines the number of different cells and their phenotypes. The file can be created during the normal GUI-directed input for each simulation, or written/modified by hand before launching the main simulation.
+     - Cells can be 'solid' or 'fluid'. Fluid cells describe regions of blood, lymph or other fluids flowing in the system. The fluids can carry in/out nutrients, oxygen, CO2 etc.
+     - According to the initial prescription, the boundaries between solid and fluid cells can include specially-designed boundary agents.
+     - NCEL = NUMF(total solid/fluid agents) + NDIS (boundary agents)
      - After building the first Voronoi map, all cells are set to
        parenchyma ITYPE=1 (whatever you chose it to represent...). If both nr_cel and fl_cel are =0, an empty Voronoi lattice is generated, to be filled by hand by putting down agents one by one.
      - Note that fluid cells are selected after the Voronoi map
        of the whole tissue has been constructed. This can be done
        by hand-picking with the mouse, or by asking the code to
        provide a random guess of vases distribution.
-     - Usually, fl_cel=1 is venous blood, fl_cel=2 is arterial,
-       fl_cel=3 can be bile or lymph, and so on...
        
-<b>HOWEVER:</b> such cell definitions are just a mnemonic, not necessarily attached to a fixed real cell type. How a cell-agent actually behaves is fixed by the chemistry, see 2) below. 
+<b>NOTE:</b> How a cell-agent actually behaves is fixed by the chemistry, see 2) below. 
 
-<b>IN PRACTICE:</b> even if you can use a potentially illimited number of variants, try to use not more than 2-3 different cell types, and 1 or 2 fluids, otherwise the model could become very difficult to analyse and interpret. Make the chemistry as rich as possible, instead.
+<b>IN PRACTICE:</b> even if you can use a potentially illimited number of variants, try to use not more than 4-5 different cell types, and 1 or 2 fluids, otherwise the model could become very difficult to analyse and interpret. Choose to make the chemistry as rich as possible, instead.
 
   2) You can select an arbitrary number of metabolites, with the FIXED convention that: 
      1=Insulin, 2=glucose, 3=oxygen, 4=FFA (free fatty acids).
      Then, the indices 5,6,7... can be used for any other metabolite.
      - Chemical equations for metabolite cycling (the 4 basic plus any other) can be coded in CellML language. The easiest
-       way to provide them is to use OpenCOR to script the eqs
+       way to provide them is to use <b>OpenCOR</b> to script the eqs
        and then export them to Fortran; they will be linked by
-       MODLOG and used normally. (Alternatively, you can code them yourself in the corresponding subroutine.)
+       MODLOG and used normally. Alternatively, you can code them yourself in the corresponding subroutine. (Please note that Open COR export into F90 is not foolproof, so you better check the resulting *.f file in the directory ./models/)
      - Be sure to create a 'compartment' for each of the nr_cel
        and fl_cel cell types, and include at least one chemical equation per compartment. For solid cells, you should define
        how metabolites are consumed, created and exchanged. For
@@ -80,7 +75,7 @@ at OpenMP parallelization.
        are delivered, and/or how fluids (bile, lymph,...) are
        recovered from the solid cells and transported.
 
-  3) Boolean logic rules determine how cells evolve, according to the summary of their chemical activity during time (a typical time step used in MODCEL simulations is 1 minute, adjustable with the parameter ITCONV). That is, how cells can go around their phases (G1, S, G2, M), enter the G0, move, duplicate, trans-differentiate, or differentiate (if they are stems), go into apoptose or necrose, and more. 
+  3) Boolean logic rules determine how cells evolve, according to the summary of their chemical activity during time (a typical time step used in MODCEL simulations is 1 minute, adjustable with the parameter ITCONV). That is, how cells can go around their phases (G1, S, G2, M), enter the G0, move, duplicate, trans-differentiate, or differentiate (if they are stems), go into apoptose or necrose, and more. (For the moment, this step must be hard-coded into the routines. In future versions we plan to make it automatic and self-generating.)
 
 
 ------------------------------------------------------------------
@@ -103,23 +98,27 @@ again 'make install'.)
 
 1) MODCEL main program can be started with the script
                      ./modcel 
+It will launch a first GUI window allowing the user to enter a number of different global parameters for the simulation.
 
-2) The first step is to provide the code with a tissue metabolic
-model. This can be written in CellML format, or more easily can
+2) In the second GUI window opens after the first one is closed, and allows the user to define cells and phenotypes. According to the metabolic model chosen in step 1), some values are pre-filled, however the user can change them all.
+
+3) The next step is to provide the code with a tissue metabolic
+model, selected from those you have arranged in the directory ./models/.
+This can be prepared in CellML format, or more easily can
 be generated by OpenCOR. Run it through OpenCOR to generate the
 corresponding Fortran code. 
 MANDATORY: the models must be stored in the local ./models/ 
 directory, where the ./modcel script will look for finding them.
 
-3) The script recompiles the main program MODLOG by including your
+4) The script recompiles the main program MODLOG by including your
 chosen metabolic model. Then it opens a dialog window, where you
-can specify the running parameters for a new simulation, or ask
+can specify other running parameters for a new simulation, or ask
 the program to read back a previously stored configuration (this
 is the contents of the binary file BACKUP; MODLOG keeps track of 
 the last configuration in a file BACKUP_OLD whenever a new conf
 is generated).
 
-4) When the "start simulation" is pressed, the F90 code
+6) After the whole preparation part, the F90 code
    starts. It creates a new python module "voro.py" to:
    3.1) Build a new Voronoi 2D cell map
    3.2) Read an existing 2D cell map and modify it
@@ -130,11 +129,11 @@ is generated).
    bile ducts) the next step is to build triangular mesh
    for the Navier-Stokes solver. MODLOG understands it
    and creates the python module "triang.py", which will
-   propose different 2D triangulations.
+   propose different 2D triangulations. (NOTE: this step is on hold in the current release of the code).
 
    <i>You will notice that in the console window, messages and comments coming from the Fortran code appear in</i> UPPERCASE, <i>while messages and comments from the Python modules appear in</i> lowercase.
 
-6) Ensuite, the complete simulation can start
+7) Ensuite, the complete simulation can start
 
 Different types of cells are included in 2.5 version. 
 E.g. for the liver model with nr_cel=2 and fl_cel=3 they could be:
@@ -200,11 +199,11 @@ Two executable files are created in the main directory:
 - MODLOG, the executable code
 
 - modmin, an utility to convert xyz files (for old versions, now
-  replaced by Python utilities)
+  fully replaced by Python utilities)
 
 <b>RUNNING THE CODE</b>
 
-MODLOG looks for an input file named 'input' in the same
+MODLOG looks for two input files named 'input' and 'input_cell' in the same
 directory from which it is launched. the sample input
 provided should be enough self-explanatory. Starting from v2.4,
 this input file is interactively generated by the GUI windows.
@@ -212,7 +211,7 @@ this input file is interactively generated by the GUI windows.
 <b>ANALYZING THE SIMULATION</b>
 
 During the simulation, MODLOG will frequently stop to propose the
-user with a map of the evolving cell layout. The map is clickable
+user with maps of the evolving cell layout. The map is clickable
 (instructions provided on-screen) and can be used to, e.g., select
 some (one or more) cells and map the time evolution of one or more 
 metabolite. Also, complete <i>xy</i> density maps can be output for 
@@ -249,4 +248,7 @@ M. Tomezak, C. Abbadie, E. Lartigau, F. Cleri, <a href="https://www.sciencedirec
 
 The version 2.0 of MODLOG was used in this work:
 F. Cleri, <a href="https://link.springer.com/article/10.1140/epje/i2019-11878-7">Agent-based model of multicellular tumor spheroid evolution including cell metabolism</a>, Eur. J. Phys. E: Soft Matter Biol. Phys. <bf>42</bf>, 112 (2019)
+
+A variant thereof was used in this work:
+L. Terrassoux et al., <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/smll.202505343">Novel Diffuse Midline Glioma-on-Chip Recapitulating Tumor Biophysical Microenvironment to Assess the Heterogeneity of Response to Therapies</a>, Small e05343, (2025)
  
