@@ -1,0 +1,279 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{graphicx}	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{setspace}
+\doublespacing
+\setlength{\parindent}{0pt}
+ 
+\begin{document}
+
+\section*{Definition species}
+
+The metabolic parser will generate a window with a first void line (like the existing one) in which the species are defined.
+
+Species are defined at the beginning, like $A, B, C, ...$
+
+At the end of this line there is a CONFIRM button that fixes the species. If the user forgets one species, it is enough to add it also later, and click again "confirm".
+
+After "confirm", a first empty reaction (a line) is created. Each reaction contains 4 FIELDS and 2 buttons.
+
+FIELD1 is a drop-down menu presenting a choice among all the species, it is the "source".
+
+A similar FIELD3 with the same drop-down menu defines the "target" of the relation.
+
+ \section*{Definition actions}
+
+Each line defines an action between species in the form of a $verbal$. The list of possible verbals appears in a drop-down menu FIELD 2, placed between the two above.
+
+The verbals in the drop-down FIELD2 are: PRODUCES, CONSUMES, ACTIVATES.
+
+ \section*{Definition kinetics}
+ 
+ \begin{itemize}
+\item The detailed kinetics of the relation is specified in FIELD4, another drop-down menu including the list of kinetic keywords in Section 2 below: LINEAR, MASS ACTION, ACTIVATION (MM), ACTIVATION (HILL), INHIBITION (HILL), INHIBITION (COMP), REVERSIBLE.
+
+\item Some of them include numerical parameter(s) that the user is asked to specify before moving to the next reaction.
+
+\item Some kinetics require a third partner, that appears in a FIELD5 as drop-down menu with the species. This is optional and can be left blank if the kinetics in FIELD4 does not require it.
+
+\item Each of these equations can be modified by multiplying by other terms, in a chain. This is done with the GATE button.
+
+The 6th field is the GATE button. If clicked, it will open a second line below the current one. It takes as input (in FIELD3) the previous equation, instead of one species. A species in FIELD1 can be selected, and will perform an action/kinetics that will multiply (activation/repression) the equation now appearing as FIELD3. This process can be repeated to describe a contribution depending on the product of 2, 3, 4... activation/repression multipliers.
+
+\item The 7th field is the COMMIT button. When clicked this indicates the user is happy to move on to the next reaction. 
+
+\item (Optional : Possibly, a printout below the first line could summarize the result in real time as it is modified.) 
+
+\end{itemize} 
+
+So, each new line looks like:
+
+FIELD1 (menu) FIELD2 (menu) FIELD3 (menu) FIELD4 (menu) FIELD5 (menu opt) GATE (button) COMMIT (button)
+
+\begin{itemize}
+\item Once all the reactions are specified in the N lines, the result will be a number of different "flux terms" contributing to each species.
+
+\item *** BE CAREFUL HERE *** in case the flux term is the result of a product $v \cdot f1 \cdot f2 ...$ with successive applications of GATE, to count in the contribution only the final result, and not sum each term individually.
+
+\item A final button like CONFIRM concludes the process and tells the interpreter to generate the corresponding equations $dA/dt, dB/dt, dC/dt, ...$ by regrouping all the contributing flux terms from the different reaction lines.
+\end{itemize}
+
+\section*{Minimal catalog of kinetic keywords}
+
+\subsection*{Definition of allowed actions/kinetics}
+
+In the following FIELD1 = A, FIELD3 = B, FIELD5 =C (if needed).
+
+\begin{itemize}
+\item Verbal actions (FIELD2) are paired with kinetic choices (FIELD4). 
+\item Only some combinations FIELD2/FIELD4 are allowed. 
+\item With the GATE option, a pair verbal/kinetics can be multiplied in cascade by other pairs verbal/kinetics: the difference is that in the first definition FIELD1 and FIELD3 are both species; in the GATE definition FIELD1 is still a species and FIELD3 is fixed as the previous reaction.
+\end{itemize}
+
+
+\subsection*{Explicit equations}
+
+Below there is the pairing between fields and the flux terms they generate.
+
+\subsection{FIELD2 = PRODUCES}
+
+\subsubsection{FIELD4 = LINEAR}
+
+Flux term $v = kA$ 
+
+Contributions
+\begin{align}
+\frac{dA}{dt} = -v \\
+\frac{dB}{dt} = +v 
+\end{align}
+
+Present the prompt: "$v = kA$, Define a value for $k$". Read $k$ from an input field.
+Only after field is valorized can click GATE or COMMIT.
+
+
+\subsubsection{FIELD4 = MASS ACTION}
+
+Flux term $v = kAB$ 
+
+Contributions
+\begin{align}
+\frac{dA}{dt} = -v \\
+\frac{dB}{dt} = -v \\
+\frac{dC}{dt} = +v
+\end{align}
+
+Present the prompt: "$v = kAB$, Define a value for $k$". Read $k$ from an input field.
+Only after field is valorized can click GATE or COMMIT.
+
+
+\subsubsection{FIELD4 = ACTIVATION (MM)}
+
+Flux term $v = V \tfrac{ A }{ K + A}$ 
+
+Contributions
+\begin{align}
+\frac{dA}{dt} = -v \\
+\frac{dB}{dt} = +v
+\end{align}
+
+Present the prompt: "$v = V A/(K+A)$, Define a value for $V,K$". Read $V,K$ from two input fields.
+Only after two fields are valorized can click GATE or COMMIT.
+
+
+\subsubsection{FIELD4 = ACTIVATION (HILL)}
+
+Flux term $v = V \tfrac{ A^n }{ K^n + A^n}$,
+
+\begin{align}
+\frac{dA}{dt} = -v \\
+\frac{dB}{dt} = +v
+\end{align}
+
+Present the prompt: "$v = V A^n/(K^n+A^n)$, Define a value for $V,K,n$". Read $V,K,n$ from three input fields.
+Only after the three fields are valorized can click GATE or COMMIT.
+
+
+\subsubsection{FIELD4 = INHIBITION (HILL)}
+
+Flux multiplier $f = V \tfrac{ K^n }{ K^n + A^n}$
+
+It can only appear as multiplier of an already defined flux term $v$ (with GATE), it has no independent contribution:
+\begin{align}
+\frac{dA}{dt} = v \cdot f \\
+\frac{dB}{dt} = v \cdot f
+\end{align}
+
+Present the prompt: "$f = V A^n/(K^n+A^n)$, Define a value for $V,K,n$". Read $V,K,n$ from three input fields.
+Only after the three fields are valorized can click GATE or COMMIT.
+
+
+\subsubsection{FIELD4 = REVERSIBLE}
+
+Flux term $v = k_1 A - k_2 B$,
+
+\begin{align}
+\frac{dA}{dt} = -v \\
+\frac{dB}{dt} = +v
+\end{align}
+
+Present the prompt: "$v = k_1 A - k_2 B$, Define a value for $k1,k2$". Read $k1,k2$ from two input fields.
+Only after the two fields are valorized can click GATE or COMMIT.
+
+\subsection{FIELD2 = CONSUMES}
+
+\subsubsection{FIELD4 = LINEAR}
+
+Flux term $v = kAB$ 
+
+Contributions
+\begin{align}
+\frac{dA}{dt} = 0 \\
+\frac{dB}{dt} = -v 
+\end{align}
+
+Present the prompt: "$v = kB$, Define a value for $k$". Read $k$ from an input field.
+Only after field is valorized can click GATE or COMMIT.
+
+\subsubsection{FIELD4 = MASS ACTION}
+
+Flux term $v = kAB$ 
+
+Contributions
+\begin{align}
+\frac{dA}{dt} = -v \\
+\frac{dB}{dt} = -v 
+\end{align}
+
+Present the prompt: "$v = kB$, Define a value for $k$". Read $k$ from an input field.
+Only after field is valorized can click GATE or COMMIT.
+
+
+\subsubsection{FIELD4 = ACTIVATION (MM)}
+
+Flux term $v = V \tfrac{ B }{ K + B}$ 
+
+Contributions
+\begin{align}
+\frac{dA}{dt} = 0 \\
+\frac{dB}{dt} = -v
+\end{align}
+
+Present the prompt: "$v = V B/(K+B)$, Define a value for $V,K$". Read $V,K$ from two input fields.
+Only after two fields are valorized can click GATE or COMMIT.
+
+
+\subsection{FIELD2 = ACTIVATES}
+
+\subsubsection{FIELD4 = LINEAR}
+
+Flux term $v = kA$ 
+
+Contributions
+\begin{align}
+\frac{dA}{dt} = 0 \\
+\frac{dB}{dt} = +v 
+\end{align}
+
+Present the prompt: "$v = kA$, Define a value for $k$". Read $k$ from an input field.
+Only after field is valorized can click GATE or COMMIT.
+
+
+\subsubsection{FIELD4 = ACTIVATION (MM)}
+
+Flux term $v = V \tfrac{ A }{ K + A }$ 
+
+Contributions
+\begin{align}
+\frac{dA}{dt} = 0 \\
+\frac{dB}{dt} = +v
+\end{align}
+
+Present the prompt: "$v = V B/(K+B)$, Define a value for $V,K$". Read $V,K$ from two input fields.
+Only after two fields are valorized can click GATE or COMMIT.
+
+
+\subsubsection{FIELD4 = ACTIVATION (HILL)}
+
+Flux term $v = V \tfrac{ A^n }{ K^n + A^n}$,
+
+\begin{align}
+\frac{dA}{dt} = 0 \\
+\frac{dB}{dt} = +v
+\end{align}
+
+Present the prompt: "$v = V A^n/(K^n+A^n)$, Define a value for $V,K,n$". Read $V,K,n$ from three input fields.
+Only after the three fields are valorized can click GATE or COMMIT.
+
+
+\subsubsection{FIELD4 = INHIBITION (HILL)}
+
+Flux multiplier $f = V \tfrac{ K^n }{ K^n + A^n}$
+
+It can only appear as multiplier of an already defined flux term $v$ (with GATE), it has no independent contribution:
+\begin{align}
+\frac{dA}{dt} = v \cdot f \\
+\frac{dB}{dt} = v \cdot f
+\end{align}
+
+Present the prompt: "$f = V A^n/(K^n+A^n)$, Define a value for $V,K,n$". Read $V,K,n$ from three input fields.
+Only after the three fields are valorized can click GATE or COMMIT.
+
+
+\subsubsection{FIELD4 = INHIBITION (COMP)}
+
+Flux multiplier $f = V \tfrac{ 1 }{ 1 + aA}$
+
+It can only appear as multiplier of an already defined flux term $v$ (with GATE), it has no independent contribution:
+\begin{align}
+\frac{dA}{dt} = v \cdot f \\
+\frac{dB}{dt} = v \cdot f
+\end{align}
+
+Present the prompt: "$f = V/(1+aA)$, Define a value for $V,a$". Read $V,a$ from three input fields.
+Only after the two fields are valorized can click GATE or COMMIT.
+
+
+\end{document}  

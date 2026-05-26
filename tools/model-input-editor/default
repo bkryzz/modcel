@@ -1,0 +1,8 @@
+# toy public template --------------------------------------------------
+NR_CEL = 2        # number of cell types
+IMETA = 1         # toy metabolism selector
+NSTEPS = 100      # number of time steps
+DT = 1.0          # time step
+OUTPUT_EVERY = 10 # output interval
+USE_CHEMISTRY = .true.
+
