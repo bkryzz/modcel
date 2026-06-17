@@ -4,22 +4,24 @@
 
 Agent-based modeling of biological tissues (from the Latin <i><b>MOD</b>ulamen <b>CEL</b>lularum</i>, or "the rhythm of cells").
 
-<b>MODCEL v2.5 is an AGENT-BASED biophysical simulation model</b> aimed at mathematically reconstructing and modeling tissue physiology, possibly starting from 2D images (for backward compatibility with versions ≤2.0, it also includes older modules for 3D simulation of e.g. spheroids or organoids with central symmetry.)
+<b>MODCEL v2.5 is an AGENT-BASED biophysical simulation model</b> aimed at mathematically reconstructing and modeling 
+tissue physiology starting from 2D image slices, possibly stacked in the 3rd dimension (for backward compatibility with 
+versions ≤2.0, it also includes older modules for 3D simulation of e.g. spheroids or organoids with central symmetry.)
 
   The key intended target application is to input 2D representations of
   biological tissues, as typically resulting from a histological
-  section or a clinical biopsy. The user can either input a tissue map
-  from a real sample (e.g., slides reconstructed via segmentation tools like <a href="https://github.com/MouseLand/cellpose">CellPose</a> or <a href="https://github.com/CellProfiler">CellProfiler</a>), or
-  build their own tissue model, to imitate a realistic pattern or create an entirely
-  arbitrary condition.
+  slide (section) or a clinical biopsy. The user can input a tissue map
+  from a real sample (e.g., slides reconstructed via segmentation tools like <a href="https://github.com/MouseLand/cellpose">CellPose</a> or <a href="https://github.com/CellProfiler">CellProfiler</a>), or by the embedded "imageproc" histology analyzer, or
+  build their own tissue model to imitate a realistic pattern or create an entirely
+  arbitrary starting condition.
 
-  The geometry and physics allows a 3D representation, however taking advantage (with respect to other softwares) of a <b>layered</b> tissue structure, that better approaches the architecture of most living tissues. 
+  The geometry and physics allows a 3D representation, however taking advantage (with respect to other softwares) of a <b>layered</b> tissue structure, that better approaches the architecture of most living tissues. This is the meaning of "2.5", a 3rd dimension that is seen as a stacking of 2D layers.
   
-  The main module MODLOG (its number-crunching F90 engine) treats a population of cells/agents that
+  The main module MODLOG (the number-crunching F90 engine) treats a population of cells/agents that
   evolve in time and space according to a set of Markovian rules and 
   internal chemical evolution of a prescribed set of metabolites. 
-  Chemical species can be assigned fixed, or transported and diffused by the fluids.
-  Cell-cell and cell-fluid xchanges are regulated by a basic model of advection-diffusion
+  Chemical species can be assigned as fixed on the grid, or transported and diffused by the fluids (air, blood, lymph...).
+  Cell-cell and cell-fluid exchanges are regulated by a basic model of advection-diffusion
   equations.
   
   The following features decribe the cell/agent population:
@@ -30,7 +32,7 @@ Agent-based modeling of biological tissues (from the Latin <i><b>MOD</b>ulamen <
   fluid capillaries (e.g., bile, lymph...) 
 
   - <b>Multistate:</b> each cell/agent evolves by probabilistic Markov chain through discrete states,
-  e.g., from “healthy” to "diseased" to “dead”.
+  e.g., from “healthy” to "diseased" (with progressive states) to “dead”.
 
 MODCEL is written with a mix of Python for the user-interaction parts
 (creating and managing input files and cell configs, creating and
