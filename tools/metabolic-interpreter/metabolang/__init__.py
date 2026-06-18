@@ -1,2 +1,0 @@
-"""Metabolic equation mini-language."""
-
