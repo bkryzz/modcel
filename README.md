@@ -60,16 +60,4 @@ F. Cleri, <a href="https://link.springer.com/article/10.1140/epje/i2019-11878-7"
 A variant thereof was used in this work:
 L. Terrassoux et al., <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/smll.202505343">Novel Diffuse Midline Glioma-on-Chip Recapitulating Tumor Biophysical Microenvironment to Assess the Heterogeneity of Response to Therapies</a>, Small e05343, (2025)
 
----------------------------------------------------------------------------
 
-<b>Repository tools</b>
-
-This public repository includes early helper tools for preparing MODCEL input
-files. These tools are independent input-authoring utilities and do not include
-the private simulation engine or project-specific biological parameter sets.
-
-- <code>tools/model-input-editor</code>: GUI utilities for preparing structured
-  global input files and cell phenotype/interactions files.
-- <code>tools/metabolic-interpreter</code>: GUI prototype for assembling small
-  metabolic ODE systems and exporting Fortran90 code.
- 
