@@ -11,9 +11,13 @@ versions ≤2.0, it also includes older modules for 3D simulation of e.g. sphero
   The key intended target application is to input 2D representations of
   biological tissues, as typically resulting from a histological
   slide (section) or a clinical biopsy. The user can input a tissue map
-  from a real sample (e.g., slides reconstructed via segmentation tools like <a href="https://github.com/MouseLand/cellpose">CellPose</a> or <a href="https://github.com/CellProfiler">CellProfiler</a>), or by the embedded "imageproc" histology analyzer, or
+  from a real sample with the embedded "imageproc" histology analyzer, or
   build their own tissue model to imitate a realistic pattern or create an entirely
   arbitrary starting condition.
+
+  Biochemical equations for metabolite evolution can be prepared in the "interpreter"
+  module, using a domain-specific natural language that translates coded words into equations
+  according to a predefined set of rules, without need for direct coding by the user.
 
   The geometry and physics allows a 3D representation, however taking advantage (with respect to other softwares) of a <b>layered</b> tissue structure, that better approaches the architecture of most living tissues. This is the meaning of "2.5", a 3rd dimension that is seen as a stacking of 2D layers.
   
@@ -48,6 +52,7 @@ at OpenMP parallelization.
 ----- VERSION 2.4.2 opened to compatibility with <a href="https://github.com/opencor/opencor">OpenCOR</a> chemical models according to CellML scripting. We plan to include a more general parser to read more various formats (e.g. from COPASI).
 
 ----- Starting with version >2.5 the model has turned yet more general: arbitrary number of cell types, metabolites, border agents, Boolean logic, and more.
+
 
 ---------------------------------------------------------------------------
 
